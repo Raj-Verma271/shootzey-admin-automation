@@ -10,8 +10,8 @@ import pageobjects.Login;
 import utilities.Dataprovider;
 
 public class LoginTest extends SetupMethod {
-	private String  Email="shivam@gmail.com";
-	private String Password="12345678";
+	private String  Email="shootesy@gmail.com";
+	private String Password="Admin@12345";
 	
 	@Test(groups="login")
 	public void Verify_LoginTest() {
