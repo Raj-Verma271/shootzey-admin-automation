@@ -77,10 +77,10 @@ import java.time.Duration;
 import testbase.BaseMethods;
 
 public class AddBlog extends BaseMethods {
-    public AddBlog(WebDriver driver) {
-        super(driver);
-        
-    }
+//    public AddBlog(WebDriver driver) {
+//        super(driver);
+//        
+//    }
 
     // WebElements for login
     @FindBy(xpath = "//input[@placeholder='Email']") WebElement email;
