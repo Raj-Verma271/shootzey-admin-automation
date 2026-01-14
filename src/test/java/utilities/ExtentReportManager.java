@@ -167,16 +167,16 @@ public class ExtentReportManager implements ITestListener {
         test.log(Status.PASS, "Test Case Passed: " + result.getName());
     }
 
-    public void onTestFailure(ITestResult result) {
-        test = extent.createTest(result.getName());
-        test.assignCategory(result.getMethod().getGroups());
-        test.log(Status.FAIL, "Test Case Failed: " + result.getName());
-        test.log(Status.INFO, "Failure Reason: " + result.getThrowable());
-
-        WebDriver driver = BaseMethods.getDriver(); // Ensure BaseMethods provides a valid WebDriver instance
-        String imgPath = new BaseMethods(driver).captureScreen(result.getName());
-        test.addScreenCaptureFromPath(imgPath);
-    }
+//    public void onTestFailure(ITestResult result) {
+//        test = extent.createTest(result.getName());
+//        test.assignCategory(result.getMethod().getGroups());
+//        test.log(Status.FAIL, "Test Case Failed: " + result.getName());
+//        test.log(Status.INFO, "Failure Reason: " + result.getThrowable());
+//
+//        WebDriver driver = BaseMethods.getDriver(); // Ensure BaseMethods provides a valid WebDriver instance
+//        String imgPath = new BaseMethods(driver).captureScreen(result.getName());
+//        test.addScreenCaptureFromPath(imgPath);
+//    }
 
     public void onTestSkipped(ITestResult result) {
         test = extent.createTest(result.getName());
