@@ -22,3 +22,48 @@ jobs:
 
     - name: Run Selenium Tests
       run: mvn clean test
+
+    # ---------- REPORT UPLOAD STEP ----------
+    - name: Upload Test Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: selenium-report
+        path: |
+          target/surefire-reports/
+          screenshots/
+
+    # ---------- EMAIL STEP ----------
+    - name: Send Test Report Email
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+
+        username: ${{ secrets.GMAIL_USER }}
+        password: ${{ secrets.GMAIL_PASS }}
+
+        subject: "Selenium Automation Report - ${{ github.repository }}"
+
+        body: |
+          Hello Team,
+
+          Selenium Test Execution Completed.
+
+          Repository: ${{ github.repository }}
+          Branch: ${{ github.ref }}
+
+          Please find attached:
+          - Surefire Test Report
+          - Screenshots (if any failure)
+
+          Regards,
+          GitHub Actions Bot
+
+        to: YOUR_EMAIL@gmail.com
+        from: GitHub-Actions
+
+        attachments: |
+          target/surefire-reports/*.xml
+          screenshots/*.png
